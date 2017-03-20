@@ -23,6 +23,7 @@ var ruleDiv = document.getElementById("rule");
 var cardDiv = document.getElementById("card");
 var backBtn = document.getElementById("backBtn");
 var nextBtn = document.getElementById("nextBtn");
+var editbtn = document.getElementById("editBtn");
 
 function getQuestions() {
   Papa.parse("data/questions.csv", {
@@ -68,6 +69,11 @@ function goBack() {
   questionMode = true;
 }
 
+function edit() {
+  alert("question ID is " + randomNumber);
+}
+
 window.addEventListener('DOMContentLoaded', getQuestions);
 nextBtn.addEventListener("click", cardClicked);
 backBtn.addEventListener("click", goBack);
+editbtn.addEventListener("click", edit);
