@@ -41,13 +41,13 @@ function cardClicked() {
 function getQuestion() {
   randomNumber = Math.floor(Math.random() * (questions.length - 1));
   ruleDiv.innerHTML = questions[randomNumber][2];
-  questionHistory.push(questions[randomNumber][0]);
   ruleDiv.style.fontStyle = 'normal';
   questionMode = true;
 }
 
 function showAnswer() {
   ruleDiv.innerHTML = questions[randomNumber][3];
+  questionHistory.push(questions[randomNumber][0]);
   ruleDiv.style.fontStyle = 'italic';
   questionMode = false;
 }
