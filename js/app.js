@@ -18,8 +18,10 @@ settings.cardAnimation.delay.randomness = "0%";
 
 var questions, randomNumber;
 var questionMode = false;
+var questionHistory = [];
 var ruleDiv = document.getElementById("rule");
 var cardDiv = document.getElementById("card");
+var backBtn = document.getElementById("backBtn");
 
 function getQuestions() {
   Papa.parse("data/questions.csv", {
@@ -39,6 +41,7 @@ function cardClicked() {
 function getQuestion() {
   randomNumber = Math.floor(Math.random() * (questions.length - 1));
   ruleDiv.innerHTML = questions[randomNumber][2];
+  questionHistory.push(questions[randomNumber][0]);
   ruleDiv.style.fontStyle = 'normal';
   questionMode = true;
 }
@@ -53,5 +56,15 @@ function startAnimation(type) {
   alicejs.cheshire({"perspectiveOrigin": settings.cardAnimation.perspectiveOrigin,"direction": settings.cardAnimation.direction,"elems": ["card"],"flip": settings.cardAnimation.flip,"turns": settings.cardAnimation.turns,"overshoot": settings.cardAnimation.overshoot,"duration": {"value": settings.cardAnimation.duration.value,"randomness": settings.cardAnimation.duration.randomness},"timing": settings.cardAnimation.timing,"delay": {"value": settings.cardAnimation.delay.value,"randomness": settings.cardAnimation.delay.randomness},"iteration": "1","playstate": "running"});
 }
 
+function goBack() {
+  if(questionHistory.length == 0) return;
+  startAnimation();
+  var lastQuestion = questionHistory.pop();
+  ruleDiv.innerHTML = questions[lastQuestion][2];
+  ruleDiv.style.fontStyle = 'normal';
+  questionMode = true;
+}
+
 window.addEventListener('DOMContentLoaded', getQuestions);
 cardDiv.addEventListener("click", cardClicked);
+backBtn.addEventListener("click", goBack);
