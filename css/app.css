@@ -1,6 +1,6 @@
 #card {
   width: 98%;
-  height: 98%;
+  height: 88%;
   margin: auto;
   border: 5px solid #000;
   display: -webkit-flexbox;
@@ -21,4 +21,10 @@
   font: 45px arial, sans-serif;
   vertical-align: middle;
   padding: 10px;
+}
+
+button {
+  width: 48%;
+  padding: 10px;
+  margin: 5px;
 }

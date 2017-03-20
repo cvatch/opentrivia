@@ -22,6 +22,7 @@ var questionHistory = [];
 var ruleDiv = document.getElementById("rule");
 var cardDiv = document.getElementById("card");
 var backBtn = document.getElementById("backBtn");
+var nextBtn = document.getElementById("nextBtn");
 
 function getQuestions() {
   Papa.parse("data/questions.csv", {
@@ -41,6 +42,7 @@ function cardClicked() {
 function getQuestion() {
   randomNumber = Math.floor(Math.random() * (questions.length - 1));
   ruleDiv.innerHTML = questions[randomNumber][2];
+  nextBtn.innerHTML = "answer";
   ruleDiv.style.fontStyle = 'normal';
   questionMode = true;
 }
@@ -48,6 +50,7 @@ function getQuestion() {
 function showAnswer() {
   ruleDiv.innerHTML = questions[randomNumber][3];
   questionHistory.push(questions[randomNumber][0]);
+  nextBtn.innerHTML = "next";
   ruleDiv.style.fontStyle = 'italic';
   questionMode = false;
 }
@@ -66,5 +69,5 @@ function goBack() {
 }
 
 window.addEventListener('DOMContentLoaded', getQuestions);
-cardDiv.addEventListener("click", cardClicked);
+nextBtn.addEventListener("click", cardClicked);
 backBtn.addEventListener("click", goBack);
