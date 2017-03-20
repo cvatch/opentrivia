@@ -62,8 +62,8 @@ function startAnimation(type) {
 function goBack() {
   if(questionHistory.length == 0) return;
   startAnimation();
-  var lastQuestion = questionHistory.pop();
-  ruleDiv.innerHTML = questions[lastQuestion][2];
+  randomNumber = questionHistory.pop();
+  ruleDiv.innerHTML = questions[randomNumber][2];
   ruleDiv.style.fontStyle = 'normal';
   questionMode = true;
 }
