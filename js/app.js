@@ -30,6 +30,7 @@ function getQuestions() {
     download: true,
     complete: function(results) {
       questions = results.data;
+      ruleDiv.innerHTML = "Trivia with " + questions.length + " questions!";
     }
   });
 }
