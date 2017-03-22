@@ -70,8 +70,17 @@ function goBack() {
   questionMode = true;
 }
 
-function edit() {
-  alert("question ID is " + randomNumber);
+function edit(answer) {
+  //alert("question ID is " + randomNumber);
+  var editMessage = "Enter your edit";
+  var questionEdit = {};
+  questionEdit.id = randomNumber;
+  if(answer) questionEdit.answer = prompt(editMessage, questions[randomNumber][2]);
+  else questionEdit.question = prompt(editMessage, questions[randomNumber][1]);
+  console.log(questionEdit);
+  $.post( "ec2-52-89-170-89.us-west-2.compute.amazonaws.com:3999/email/", questionEdit).done(function( data ) {
+    alert( "Data Loaded: " + data );
+  });
 }
 
 window.addEventListener('DOMContentLoaded', getQuestions);
