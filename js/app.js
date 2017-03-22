@@ -79,6 +79,7 @@ function edit(answer) {
   else questionEdit.question = prompt(editMessage, questions[randomNumber][1]);
   console.log(questionEdit);
   $.post( "https://graniteapps.co/services/email/send", questionEdit, function( data ) {
+    data = JSON.parse(data);
     alert(data.message);
   });
 }
