@@ -78,8 +78,8 @@ function edit() {
   if(!questionMode) questionEdit.answer = prompt(editMessage, questions[randomNumber][3]);
   else questionEdit.question = prompt(editMessage, questions[randomNumber][2]);
   if(!questionEdit.question && !questionEdit.answer) return
-  questoinEdit.oldQuestoin = questions[randomNumber][2];
-  questoinEdit.oldAnswer = questions[randomNumber][3];
+  questionEdit.oldQuestion = questions[randomNumber][2];
+  questionEdit.oldAnswer = questions[randomNumber][3];
   $.post( "https://graniteapps.co/services/email/send", questionEdit, function( data ) {
     data = JSON.parse(data);
     alert(data.message);
