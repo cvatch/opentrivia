@@ -70,12 +70,12 @@ function goBack() {
   questionMode = true;
 }
 
-function edit(answer) {
+function edit() {
   //alert("question ID is " + randomNumber);
   var editMessage = "Enter your edit";
   var questionEdit = {};
   questionEdit.id = randomNumber;
-  if(answer) questionEdit.answer = prompt(editMessage, questions[randomNumber][2]);
+  if(!questionMode) questionEdit.answer = prompt(editMessage, questions[randomNumber][2]);
   else questionEdit.question = prompt(editMessage, questions[randomNumber][1]);
   console.log(questionEdit);
   $.post( "https://graniteapps.co/services/email/send", questionEdit, function( data ) {
