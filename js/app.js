@@ -70,16 +70,19 @@ function goBack() {
   questionMode = true;
 }
 
-function edit(answer) {
+function edit() {
   //alert("question ID is " + randomNumber);
   var editMessage = "Enter your edit";
   var questionEdit = {};
   questionEdit.id = randomNumber;
-  if(answer) questionEdit.answer = prompt(editMessage, questions[randomNumber][2]);
-  else questionEdit.question = prompt(editMessage, questions[randomNumber][1]);
-  console.log(questionEdit);
-  $.post( "ec2-52-89-170-89.us-west-2.compute.amazonaws.com:3999/email/", questionEdit).done(function( data ) {
-    alert( "Data Loaded: " + data );
+  if(!questionMode) questionEdit.answer = prompt(editMessage, questions[randomNumber][3]);
+  else questionEdit.question = prompt(editMessage, questions[randomNumber][2]);
+  if(!questionEdit.question && !questionEdit.answer) return
+  questionEdit.oldQuestion = questions[randomNumber][2];
+  questionEdit.oldAnswer = questions[randomNumber][3];
+  $.post( "https://graniteapps.co/services/email/send", questionEdit, function( data ) {
+    data = JSON.parse(data);
+    alert(data.message);
   });
 }
 
