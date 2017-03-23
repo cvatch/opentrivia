@@ -77,6 +77,7 @@ function edit() {
   questionEdit.id = randomNumber;
   if(!questionMode) questionEdit.answer = prompt(editMessage, questions[randomNumber][3]);
   else questionEdit.question = prompt(editMessage, questions[randomNumber][2]);
+  if(!questionEdit.question && !questionEdit.answer) return
   console.log(questionEdit);
   $.post( "https://graniteapps.co/services/email/send", questionEdit, function( data ) {
     data = JSON.parse(data);
